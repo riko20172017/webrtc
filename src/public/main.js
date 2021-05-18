@@ -43,7 +43,8 @@ async function call() {
     startTime = window.performance.now();
     const videoTracks = localStream.getVideoTracks();
     const audioTracks = localStream.getAudioTracks();
-    
+
+
     if (videoTracks.length > 0) {
         console.log(`Using video device: ${videoTracks[0].label}`);
     }
@@ -77,6 +78,7 @@ async function onCreateOfferSuccess(desc) {
     console.log('pc1 setLocalDescription start');
     try {
         await pc1.setLocalDescription(desc);
+        socket.send(JSON.stringify({ type: "video-offer", sdp: desc.sdp }))
         onSetLocalSuccess(pc1);
     } catch (e) {
         onSetSessionDescriptionError();
@@ -116,4 +118,6 @@ function hangup() {
     pc1 = null;
     hangupButton.disabled = true;
     callButton.disabled = false;
+
+    socket.send(JSON.stringify({ type: "delete-offer", id: offerId }));
 }
