@@ -1,4 +1,4 @@
-let socket = new WebSocket("ws://localhost:9000/");
+let socket = new WebSocket("wss://10.0.11.47:8000");
 let offerId;
 socket.onopen = function (e) {
     console.log("[open] Соединение установлено");
