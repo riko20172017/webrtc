@@ -2,18 +2,6 @@ var WebSocketServer = new require('ws');
 const https = require('https');
 const fs = require('fs');
 
-// const express = require('express');
-// const server = new express();
-
-// server.get('/', function(request, response){
-//     response.sendFile(__dirname + "/index.html");
-// });
-
-// server.use(express.static(__dirname + '/public'));
-
-// server.listen(8000);
-
-// подключённые клиенты
 var clients = {};
 var offers = [];
 
